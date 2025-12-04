@@ -16,17 +16,12 @@ fn main() {
 }
 
 fn is_accessible(paper_grid: &Vec<Vec<char>>, y: usize, x: usize) -> bool {
-    let total: Vec<u64> = vec![(y-1,x-1),(y-1,x),(y-1,x+1),(y,x-1),(y,x+1),(y+1,x-1),(y+1,x),(y+1,x+1)]
+    vec![(y-1,x-1),(y-1,x),(y-1,x+1),(y,x-1),(y,x+1),(y+1,x-1),(y+1,x),(y+1,x+1)]
         .iter()
-        .map(|(y,x)| {
-            if paper_grid[*y][*x] == '@' {
-                return 1;
-            }
-
-            0
-        }).collect();
-
-    total.iter().sum::<u64>() < 4
+        .map(|(y,x)| if paper_grid[*y][*x] == '@' { 1 } else { 0 })
+        .collect::<Vec<u64>>()
+        .iter()
+        .sum::<u64>() < 4
 }
 
 fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
@@ -45,6 +40,7 @@ fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
 fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
     let mut total = 0_u64;
 
+    // I wish rust had do-while loops....
     loop {
         let mut no_rolls_moved = true;
 
