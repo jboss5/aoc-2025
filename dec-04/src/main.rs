@@ -41,7 +41,7 @@ fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
 fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
     let mut total = 0_u64;
 
-    let mut no_rolls_moved = true;
+    let mut no_rolls_moved;
     do_while!(!no_rolls_moved, {
         no_rolls_moved = true;
         for y in 1..paper_grid.len()-1 {
