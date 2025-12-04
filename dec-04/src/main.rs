@@ -3,13 +3,13 @@ fn main() {
     let mut grid;
     grid = aoc_utils::get_lines(&"input.txt".to_string()).map(|l| {
         let mut line = l.unwrap();
-        line.push('.');
+        line.push(',');
         line.insert(0, ',');
         line.chars().collect()
     }).collect::<Vec<Vec<char>>>();
 
     grid.insert(0, vec![','; grid[0].len()]);
-    grid.push(vec!['.'; grid[0].len()]);
+    grid.push(vec![','; grid[0].len()]);
 
     println!("p1 {}", p1(&grid));
     println!("p2 {}", p2(&mut grid));
