@@ -25,16 +25,14 @@ fn is_accessible(paper_grid: &Vec<Vec<char>>, y: usize, x: usize) -> bool {
 }
 
 fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
-    let mut total = 0_u64;
-    for y in 1..paper_grid.len()-1 {
-        for x in 1..paper_grid[y].len()-1 {
-            if paper_grid[y][x] == '@' && is_accessible(paper_grid, y, x) {
-                total += 1;
-            }
-        }
-    }
-
-    total
+    (1..paper_grid.len()-1).into_iter().map(|y| 
+        (1..paper_grid[y].len()-1)
+            .into_iter()
+            .filter(|x| paper_grid[y][*x] == '@')
+            .filter(|x| is_accessible(paper_grid, y, *x))
+            .map(|_x| 1)
+            .sum::<u64>())
+        .sum::<u64>()
 }
 
 fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
