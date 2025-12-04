@@ -31,8 +31,9 @@ fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
             .filter(|x| paper_grid[y][*x] == '@')
             .filter(|x| is_accessible(paper_grid, y, *x))
             .map(|_x| 1)
-            .sum::<u64>())
-        .sum::<u64>()
+            .sum::<u64>()
+        )
+    .sum::<u64>()
 }
 
 fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
