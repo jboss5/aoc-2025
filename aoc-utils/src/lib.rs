@@ -27,3 +27,14 @@ pub fn str_to_vec<T: FromStr>(line: String, delim: &str) -> Vec<T> {
         .map(|s| T::from_str(s).ok().unwrap())
     )
 }
+
+#[macro_export]
+macro_rules! do_while {
+    ($condition:expr, $code:block) => {
+        let mut first = true;
+        while first || $condition {
+            first = false;
+            $code
+        }
+    };
+}

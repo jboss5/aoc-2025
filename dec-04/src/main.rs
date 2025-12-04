@@ -1,3 +1,5 @@
+use aoc_utils::do_while;
+
 
 fn main() {
     let mut grid;
@@ -39,10 +41,9 @@ fn p1(paper_grid: &Vec<Vec<char>>) -> u64 {
 fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
     let mut total = 0_u64;
 
-    // I wish rust had do-while loops....
-    loop {
-        let mut no_rolls_moved = true;
-
+    let mut no_rolls_moved = true;
+    do_while!(!no_rolls_moved, {
+        no_rolls_moved = true;
         for y in 1..paper_grid.len()-1 {
             for x in 1..paper_grid[y].len()-1 {
                 if paper_grid[y][x] == '@' && is_accessible(paper_grid, y, x) {
@@ -52,9 +53,7 @@ fn p2(paper_grid: &mut Vec<Vec<char>>) -> u64 {
                 }
             }
         }
-
-        if no_rolls_moved { break; }
-    }
+    });
 
     total
 }
