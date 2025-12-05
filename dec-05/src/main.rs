@@ -52,7 +52,7 @@ fn p2(mut range_list: Vec<Range<i64>>) -> u64 {
             Use cases:
             1. r1 && r2 equal, remove r2 & keep index
             2. r2 is fully inside r1, remove r2 & keep index
-            3. r2 extends r1 either r1.end+1 or < end, remove r2 & keep index
+            3. r2 extends r1 either r1.end+1 or < end, extend r1 end & remove r2 & keep index
             4. unrelated ranges, increment index
          */
         if r1 == r2 {
